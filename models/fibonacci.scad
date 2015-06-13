@@ -11,6 +11,7 @@ box_step_size = 30;
 box_inner_depth=120;
 sep_depth = 60;
 gap=10;
+mill_offset=0;
 
 // -----------------------------------------------------------
 
@@ -72,11 +73,13 @@ module side() {
 }
 
 module outside_box() {
-    gap=5;
-    base();
-    translate([0,box_inner_depth+gap,0]) base();
-    translate([box_outer_width+gap,0,0]) side();
-    translate([box_outer_width+gap,box_inner_depth+gap,0]) side();
+    local_gap = gap + mill_offset;
+    offset(delta=mill_offset) {
+        base();
+        translate([0,box_inner_depth+local_gap,0]) base();
+        translate([box_outer_width+local_gap,0,0]) side();
+        translate([box_outer_width+local_gap,box_inner_depth+local_gap,0]) side();
+    }
 }
 
 
@@ -306,7 +309,7 @@ module inside_box() {
 }
 
 //Caixa exterior (43x25, fusta 8mm)
-//outside_box();
+outside_box();
 
 // Caixa interior (57x31, fusta 4mm)
 //inside_box();
