@@ -420,15 +420,17 @@ IC needs to have legs bent before insertion.</description>
 <wire x1="12.319" y1="-3.048" x2="13.081" y2="-3.048" width="0.127" layer="21"/>
 <wire x1="14.859" y1="-3.048" x2="15.621" y2="-3.048" width="0.127" layer="21"/>
 </package>
-<package name="1X03_2.54_SCREWTERM">
-<pad name="P1" x="0" y="0" drill="1.016" shape="square"/>
-<pad name="P2" x="2.54" y="0" drill="1.016" shape="square"/>
-<wire x1="6.54" y1="3.262" x2="6.54" y2="-3.25" width="0.127" layer="21"/>
-<wire x1="6.54" y1="-3.25" x2="-1.5" y2="-3.25" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="-3.25" x2="-1.5" y2="3.262" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="3.3" x2="6.54" y2="3.3" width="0.127" layer="21"/>
-<pad name="P3" x="5.08" y="0" drill="1.016" shape="square"/>
-<wire x1="-1.397" y1="-2.54" x2="6.477" y2="-2.54" width="0.127" layer="21"/>
+<package name="SCREWTERMINAL-200MIL-3">
+<pad name="1" x="0" y="0" drill="1.3" diameter="2.413" shape="square"/>
+<pad name="2" x="5" y="0" drill="1.3" diameter="2.413"/>
+<pad name="3" x="10" y="0" drill="1.3" diameter="2.413"/>
+<wire x1="-2.54" y1="3.81" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-3.81" x2="12.7" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="12.7" y1="-3.81" x2="12.7" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="12.7" y1="-2.54" x2="12.7" y2="3.81" width="0.127" layer="21"/>
+<wire x1="12.7" y1="3.81" x2="-2.54" y2="3.81" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-2.54" x2="12.7" y2="-2.54" width="0.127" layer="21"/>
 </package>
 <package name="TC38H">
 <description>&lt;b&gt;CRYSTAL&lt;/b&gt;</description>
@@ -3938,15 +3940,6 @@ TS-003</description>
 <text x="-3.81" y="5.08" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-3.81" y="4.06" size="0.4064" layer="27">&gt;VALUE</text>
 </package>
-<package name="1X02_2.54_SCREWTERM">
-<pad name="P2" x="0" y="0" drill="1.016" shape="square"/>
-<pad name="P1" x="2.54" y="0" drill="1.016" shape="square"/>
-<wire x1="4" y1="3.262" x2="4" y2="-3.25" width="0.127" layer="21"/>
-<wire x1="4" y1="-3.25" x2="-1.5" y2="-3.25" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="-3.25" x2="-1.5" y2="3.262" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="3.3" x2="4" y2="3.3" width="0.127" layer="21"/>
-<wire x1="3.937" y1="-2.54" x2="-1.397" y2="-2.54" width="0.127" layer="21"/>
-</package>
 <package name="AXIAL-0.4">
 <description>1/4W Resistor, 0.4" wide&lt;p&gt;
 
@@ -3995,6 +3988,17 @@ Yageo CFR series &lt;a href="http://www.yageo.com/pdf/yageo/Leaded-R_CFR_2008.pd
 <text x="5.75" y="2" size="0.6096" layer="21" ratio="16">+</text>
 <text x="3.5" y="2" size="0.6096" layer="21" ratio="16">-</text>
 <text x="9.25" y="2" size="0.6096" layer="21" ratio="16">.</text>
+</package>
+<package name="SCREWTERMINAL-200MIL-2">
+<pad name="1" x="0" y="0" drill="1.3" diameter="2.413" shape="square"/>
+<pad name="2" x="5" y="0" drill="1.3" diameter="2.413"/>
+<wire x1="-2.54" y1="3.81" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-3.81" x2="7.62" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="7.62" y1="-3.81" x2="7.62" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="7.62" y1="-2.54" x2="7.62" y2="3.81" width="0.127" layer="21"/>
+<wire x1="7.62" y1="3.81" x2="-2.54" y2="3.81" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-2.54" x2="7.62" y2="-2.54" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -4084,7 +4088,7 @@ Yageo CFR series &lt;a href="http://www.yageo.com/pdf/yageo/Leaded-R_CFR_2008.pd
 <pin name="PC0(ADC0)" x="25.4" y="25.4" length="middle" rot="R180"/>
 <pin name="PC6(/RESET)" x="-22.86" y="25.4" length="middle" function="dot"/>
 </symbol>
-<symbol name="M03-SCREW-2.5MM">
+<symbol name="M03-SCREW">
 <description>M03 SCREW TERMINAL 2.54mm PITCH</description>
 <wire x1="3.81" y1="-5.08" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
 <wire x1="1.27" y1="2.54" x2="2.54" y2="2.54" width="0.6096" layer="94"/>
@@ -4162,18 +4166,6 @@ Yageo CFR series &lt;a href="http://www.yageo.com/pdf/yageo/Leaded-R_CFR_2008.pd
 <pin name="GND" x="2.54" y="2.54" visible="off" length="short" rot="R180"/>
 <pin name="PWR" x="2.54" y="7.62" visible="off" length="short" rot="R180"/>
 </symbol>
-<symbol name="M02-SCREW-2.5MM">
-<wire x1="3.81" y1="-5.08" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
-<wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
-<wire x1="3.81" y1="-5.08" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
-<text x="-2.54" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
-<text x="-2.54" y="3.302" size="1.778" layer="95">&gt;NAME</text>
-<pin name="1" x="7.62" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
-<pin name="2" x="7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
-</symbol>
 <symbol name="RESISTOR">
 <wire x1="-2.54" y1="0.9525" x2="-2.54" y2="-0.9525" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="-0.9525" x2="2.54" y2="-0.9525" width="0.254" layer="94"/>
@@ -4205,6 +4197,18 @@ Yageo CFR series &lt;a href="http://www.yageo.com/pdf/yageo/Leaded-R_CFR_2008.pd
 <pin name="GND3" x="17.78" y="-5.08" length="middle" rot="R180"/>
 <pin name="SW_A" x="17.78" y="-12.7" length="middle" rot="R180"/>
 <pin name="SW_B" x="17.78" y="-15.24" length="middle" rot="R180"/>
+</symbol>
+<symbol name="M02-SCREW">
+<wire x1="3.81" y1="-5.08" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.6096" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="2.54" y2="-2.54" width="0.6096" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="3.81" y1="-5.08" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="3.81" y2="2.54" width="0.4064" layer="94"/>
+<text x="-2.54" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-2.54" y="3.302" size="1.778" layer="95">&gt;NAME</text>
+<pin name="1" x="7.62" y="-2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="2" x="7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -4327,16 +4331,16 @@ This is the through-hole version of this chip.</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="M03-SCREW-2.5MM">
+<deviceset name="M03-SCREW-200MIL">
 <gates>
-<gate name="G$1" symbol="M03-SCREW-2.5MM" x="0" y="0"/>
+<gate name="G$1" symbol="M03-SCREW" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="1X03_2.54_SCREWTERM">
+<device name="" package="SCREWTERMINAL-200MIL-3">
 <connects>
-<connect gate="G$1" pin="1" pad="P1"/>
-<connect gate="G$1" pin="2" pad="P2"/>
-<connect gate="G$1" pin="3" pad="P3"/>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -5241,22 +5245,6 @@ Mating wall wart : TOL-00298 (and others)</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="M02-SCREW-2.5MM">
-<gates>
-<gate name="G$1" symbol="M02-SCREW-2.5MM" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="1X02_2.54_SCREWTERM">
-<connects>
-<connect gate="G$1" pin="1" pad="P1"/>
-<connect gate="G$1" pin="2" pad="P2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="RESISTOR">
 <gates>
 <gate name="G$1" symbol="RESISTOR" x="38.1" y="-10.16"/>
@@ -5294,6 +5282,22 @@ Mating wall wart : TOL-00298 (and others)</description>
 <connect gate="G$1" pin="SW_A" pad="SW_A"/>
 <connect gate="G$1" pin="SW_B" pad="SW_B"/>
 <connect gate="G$1" pin="VSS" pad="VSS"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="M02-SCREW-200MIL">
+<gates>
+<gate name="G$1" symbol="M02-SCREW" x="0" y="2.54"/>
+</gates>
+<devices>
+<device name="" package="SCREWTERMINAL-200MIL-2">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -5341,8 +5345,8 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="BUTTON2" library="xose" deviceset="TACTILE_BUTTON" device="" value="B2"/>
 <part name="BUTTON3" library="xose" deviceset="TACTILE_BUTTON" device="" value="B3"/>
 <part name="BUTTON4" library="xose" deviceset="TACTILE_BUTTON" device="" value="B4"/>
-<part name="POWER_TERMINAL" library="xose" deviceset="M02-SCREW-2.5MM" device=""/>
-<part name="LED_TERMINAL" library="xose" deviceset="M03-SCREW-2.5MM" device=""/>
+<part name="POWER_TERMINAL" library="xose" deviceset="M02-SCREW-200MIL" device=""/>
+<part name="LED_TERMINAL" library="xose" deviceset="M03-SCREW-200MIL" device=""/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5352,6 +5356,11 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="JP1" library="SparkFun-Connectors" deviceset="FTDI_DEVICE" device=""/>
 <part name="R9" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
 <part name="U$2" library="xose" deviceset="MICROSD-HRS_DM3D" device="" value="MicroSD"/>
+<part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND15" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5388,7 +5397,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <instance part="BUTTON4" gate="G$1" x="152.4" y="7.62"/>
 <instance part="POWER_TERMINAL" gate="G$1" x="-10.16" y="96.52" rot="MR180"/>
 <instance part="LED_TERMINAL" gate="G$1" x="96.52" y="96.52"/>
-<instance part="GND1" gate="1" x="2.54" y="86.36"/>
+<instance part="GND1" gate="1" x="10.16" y="86.36"/>
 <instance part="GND5" gate="1" x="124.46" y="22.86"/>
 <instance part="GND7" gate="1" x="33.02" y="78.74"/>
 <instance part="GND8" gate="1" x="205.74" y="78.74"/>
@@ -5397,6 +5406,11 @@ Mating wall wart : TOL-00298 (and others)</description>
 <instance part="JP1" gate="G$1" x="78.74" y="93.98" rot="MR0"/>
 <instance part="R9" gate="G$1" x="-20.32" y="55.88" rot="R270"/>
 <instance part="U$2" gate="G$1" x="127" y="86.36"/>
+<instance part="GND11" gate="1" x="157.48" y="76.2"/>
+<instance part="GND12" gate="1" x="170.18" y="86.36"/>
+<instance part="GND13" gate="1" x="109.22" y="91.44"/>
+<instance part="GND14" gate="1" x="86.36" y="83.82"/>
+<instance part="GND15" gate="1" x="162.56" y="-5.08"/>
 </instances>
 <busses>
 </busses>
@@ -5472,15 +5486,9 @@ Mating wall wart : TOL-00298 (and others)</description>
 <pinref part="C5" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="2.54" y1="96.52" x2="2.54" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="POWER_TERMINAL" gate="G$1" pin="2"/>
-<wire x1="2.54" y1="96.52" x2="-2.54" y2="96.52" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="LED_TERMINAL" gate="G$1" pin="1"/>
 <wire x1="104.14" y1="93.98" x2="109.22" y2="93.98" width="0.1524" layer="91"/>
-<label x="109.22" y="93.98" size="1.778" layer="95"/>
+<pinref part="GND13" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="BATT" gate="G$1" pin="-"/>
@@ -5516,37 +5524,59 @@ Mating wall wart : TOL-00298 (and others)</description>
 <segment>
 <pinref part="BUTTON1" gate="G$1" pin="SWB2"/>
 <wire x1="157.48" y1="50.8" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
-<label x="162.56" y="50.8" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="BUTTON2" gate="G$1" pin="SWB2"/>
-<wire x1="157.48" y1="35.56" x2="162.56" y2="35.56" width="0.1524" layer="91"/>
-<label x="162.56" y="35.56" size="1.778" layer="95"/>
-</segment>
-<segment>
+<pinref part="GND15" gate="1" pin="GND"/>
+<wire x1="162.56" y1="50.8" x2="162.56" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="BUTTON4" gate="G$1" pin="SWB2"/>
+<wire x1="162.56" y1="35.56" x2="162.56" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="20.32" x2="162.56" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="5.08" x2="162.56" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="5.08" x2="162.56" y2="5.08" width="0.1524" layer="91"/>
+<junction x="162.56" y="5.08"/>
 <pinref part="BUTTON3" gate="G$1" pin="SWB2"/>
 <wire x1="157.48" y1="20.32" x2="162.56" y2="20.32" width="0.1524" layer="91"/>
-<label x="162.56" y="20.32" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="BUTTON4" gate="G$1" pin="SWB2"/>
-<wire x1="157.48" y1="5.08" x2="162.56" y2="5.08" width="0.1524" layer="91"/>
-<label x="162.56" y="5.08" size="1.778" layer="95"/>
+<junction x="162.56" y="20.32"/>
+<pinref part="BUTTON2" gate="G$1" pin="SWB2"/>
+<wire x1="157.48" y1="35.56" x2="162.56" y2="35.56" width="0.1524" layer="91"/>
+<junction x="162.56" y="35.56"/>
 </segment>
 <segment>
 <pinref part="JP1" gate="G$1" pin="GND"/>
 <wire x1="83.82" y1="86.36" x2="86.36" y2="86.36" width="0.1524" layer="91"/>
-<label x="86.36" y="86.36" size="1.778" layer="95"/>
+<pinref part="GND14" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="VSS"/>
-<wire x1="144.78" y1="104.14" x2="157.48" y2="104.14" width="0.1524" layer="91"/>
-<label x="157.48" y="104.14" size="1.778" layer="95"/>
+<wire x1="144.78" y1="104.14" x2="170.18" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="104.14" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="CMD"/>
+<wire x1="170.18" y1="96.52" x2="170.18" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="96.52" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="GND12" gate="1" pin="GND"/>
+<junction x="170.18" y="96.52"/>
 </segment>
 <segment>
-<wire x1="144.78" y1="96.52" x2="157.48" y2="96.52" width="0.1524" layer="91"/>
-<label x="157.48" y="96.52" size="1.778" layer="95"/>
-<pinref part="U$2" gate="G$1" pin="CMD"/>
+<pinref part="U$2" gate="G$1" pin="GND4"/>
+<wire x1="144.78" y1="78.74" x2="157.48" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="GND11" gate="1" pin="GND"/>
+<pinref part="U$2" gate="G$1" pin="GND1"/>
+<wire x1="144.78" y1="86.36" x2="157.48" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="86.36" x2="157.48" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="GND3"/>
+<wire x1="157.48" y1="83.82" x2="157.48" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="81.28" x2="157.48" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="81.28" x2="157.48" y2="81.28" width="0.1524" layer="91"/>
+<junction x="157.48" y="81.28"/>
+<pinref part="U$2" gate="G$1" pin="GND2"/>
+<wire x1="144.78" y1="83.82" x2="157.48" y2="83.82" width="0.1524" layer="91"/>
+<junction x="157.48" y="83.82"/>
+<junction x="157.48" y="78.74"/>
+<junction x="157.48" y="86.36"/>
+</segment>
+<segment>
+<pinref part="POWER_TERMINAL" gate="G$1" pin="1"/>
+<wire x1="-2.54" y1="99.06" x2="10.16" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="99.06" x2="10.16" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="GND1" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -5587,6 +5617,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <pinref part="IC1" gate="G$1" pin="VCC"/>
 <wire x1="104.14" y1="60.96" x2="104.14" y2="66.04" width="0.1524" layer="91"/>
 <label x="104.14" y="66.04" size="1.778" layer="95"/>
+<junction x="104.14" y="60.96"/>
 </segment>
 <segment>
 <pinref part="R8" gate="G$1" pin="2"/>
@@ -5605,9 +5636,9 @@ Mating wall wart : TOL-00298 (and others)</description>
 <label x="86.36" y="91.44" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="POWER_TERMINAL" gate="G$1" pin="1"/>
-<wire x1="-2.54" y1="99.06" x2="2.54" y2="99.06" width="0.1524" layer="91"/>
-<label x="2.54" y="99.06" size="1.778" layer="95"/>
+<pinref part="POWER_TERMINAL" gate="G$1" pin="2"/>
+<wire x1="-2.54" y1="96.52" x2="2.54" y2="96.52" width="0.1524" layer="91"/>
+<label x="2.54" y="96.52" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -5629,6 +5660,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <wire x1="-7.62" y1="38.1" x2="-12.7" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="-12.7" y1="38.1" x2="-20.32" y2="38.1" width="0.1524" layer="91"/>
+<junction x="-12.7" y="38.1"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -5640,6 +5672,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <wire x1="-7.62" y1="27.94" x2="-12.7" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="-12.7" y1="27.94" x2="-20.32" y2="27.94" width="0.1524" layer="91"/>
+<junction x="-12.7" y="27.94"/>
 </segment>
 </net>
 <net name="3V3" class="0">
@@ -5854,35 +5887,13 @@ Mating wall wart : TOL-00298 (and others)</description>
 <wire x1="96.52" y1="60.96" x2="96.52" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$14" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="GND1"/>
-<wire x1="144.78" y1="86.36" x2="157.48" y2="86.36" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$15" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="GND2"/>
-<wire x1="144.78" y1="83.82" x2="157.48" y2="83.82" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$16" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="GND3"/>
-<wire x1="144.78" y1="81.28" x2="157.48" y2="81.28" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$17" class="0">
-<segment>
-<pinref part="U$2" gate="G$1" pin="GND4"/>
-<wire x1="144.78" y1="78.74" x2="157.48" y2="78.74" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$4" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="VBAT"/>
 <pinref part="BATT" gate="G$1" pin="+"/>
 <wire x1="111.76" y1="40.64" x2="114.3" y2="40.64" width="0.1524" layer="91"/>
+<junction x="114.3" y="40.64"/>
+<junction x="111.76" y="40.64"/>
 </segment>
 </net>
 </nets>
