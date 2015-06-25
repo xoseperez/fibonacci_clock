@@ -297,6 +297,7 @@ Package for SparkFun Electronics' Tactile Button COM-10302
 <wire x1="5.08" y1="2.921" x2="5.08" y2="-2.921" width="0.127" layer="21"/>
 <wire x1="-5.08" y1="2.921" x2="-5.08" y2="1.016" width="0.127" layer="21"/>
 <wire x1="-5.08" y1="-1.016" x2="-5.08" y2="-2.921" width="0.127" layer="21"/>
+<text x="-5.461" y="0" size="0.8128" layer="27" font="vector" ratio="15" rot="R90" align="bottom-center">&gt;NAME</text>
 </package>
 <package name="CR2032-SMD">
 <wire x1="-15.24" y1="-2.54" x2="-10.16" y2="-2.54" width="0.127" layer="21"/>
@@ -419,6 +420,7 @@ IC needs to have legs bent before insertion.</description>
 <wire x1="9.779" y1="-3.048" x2="10.541" y2="-3.048" width="0.127" layer="21"/>
 <wire x1="12.319" y1="-3.048" x2="13.081" y2="-3.048" width="0.127" layer="21"/>
 <wire x1="14.859" y1="-3.048" x2="15.621" y2="-3.048" width="0.127" layer="21"/>
+<text x="-18.161" y="0" size="0.8128" layer="21" font="vector" ratio="15" rot="R90" align="bottom-center">&gt;NAME</text>
 </package>
 <package name="SCREWTERMINAL-200MIL-3">
 <pad name="1" x="0" y="0" drill="1.3" diameter="2.413" shape="square"/>
@@ -463,10 +465,11 @@ IC needs to have legs bent before insertion.</description>
 <wire x1="0" y1="5.969" x2="0.762" y2="5.969" width="0.1524" layer="21"/>
 <pad name="1" x="-1.27" y="0" drill="0.8128"/>
 <pad name="2" x="1.27" y="0" drill="0.8128"/>
-<text x="2.032" y="2.159" size="0.8128" layer="27" font="vector" ratio="15" rot="R90" align="top-left">&gt;VALUE</text>
+<text x="-2.032" y="2.032" size="0.8128" layer="27" font="vector" ratio="15" rot="R90">&gt;NAME</text>
 <rectangle x1="0.3048" y1="1.016" x2="0.7112" y2="1.6002" layer="21"/>
 <rectangle x1="-0.7112" y1="1.016" x2="-0.3048" y2="1.6002" layer="21"/>
 <rectangle x1="-1.778" y1="1.016" x2="1.778" y2="10.414" layer="43"/>
+<text x="2.032" y="2.032" size="0.8128" layer="27" font="vector" ratio="15" rot="R90" align="top-left">&gt;VALUE</text>
 </package>
 <package name="C025-025X050">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;&lt;p&gt;
@@ -2029,7 +2032,8 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="-3.429" y1="1.778" x2="-3.429" y2="-1.778" width="0.0508" layer="21" curve="180"/>
 <pad name="1" x="-2.54" y="0" drill="0.6096" shape="long" rot="R90"/>
 <pad name="2" x="2.54" y="0" drill="0.6096" shape="long" rot="R90"/>
-<text x="0" y="-2.54" size="0.8128" layer="27" font="vector" ratio="15" align="top-center">&gt;VALUE</text>
+<text x="5.207" y="-2.54" size="0.8128" layer="27" font="vector" ratio="15" align="top-right">&gt;VALUE</text>
+<text x="-5.207" y="-2.54" size="0.8128" layer="27" font="vector" ratio="15" align="top-left">&gt;NAME</text>
 </package>
 <package name="C050-025X075">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;&lt;p&gt;
@@ -2064,10 +2068,11 @@ grid 5 mm, outline 2.5 x 7.5 mm</description>
 <wire x1="2.254" y1="-0.254" x2="2.655" y2="-0.254" width="0.1524" layer="21"/>
 <wire x1="0.286" y1="-0.254" x2="2.254" y2="-0.254" width="0.1524" layer="51"/>
 <wire x1="-0.7864" y1="2.5484" x2="0.7864" y2="2.5484" width="0.1524" layer="51" curve="-34.298964"/>
-<pad name="1" x="-1.27" y="0" drill="0.8128" diameter="1.27" shape="octagon"/>
-<pad name="2" x="0" y="1.905" drill="0.8128" diameter="1.27" shape="octagon"/>
-<pad name="3" x="1.27" y="0" drill="0.8128" diameter="1.27" shape="octagon"/>
-<text x="0" y="-1.905" size="0.8128" layer="27" font="vector" ratio="15" align="top-center">&gt;VALUE</text>
+<pad name="1" x="-1.27" y="0" drill="0.8128" shape="octagon"/>
+<pad name="2" x="0" y="1.905" drill="0.8128" shape="octagon"/>
+<pad name="3" x="1.27" y="0" drill="0.8128" shape="octagon"/>
+<text x="0" y="-2.032" size="0.8128" layer="27" font="vector" ratio="15" align="top-center">&gt;VALUE</text>
+<text x="0" y="3.048" size="0.8128" layer="27" font="vector" ratio="15" align="bottom-center">&gt;NAME</text>
 </package>
 <package name="TO252">
 <description>&lt;b&gt;SMALL OUTLINE TRANSISTOR&lt;/b&gt;&lt;p&gt;
@@ -5317,8 +5322,8 @@ Mating wall wart : TOL-00298 (and others)</description>
 </class>
 </classes>
 <parts>
-<part name="MUC" library="xose" deviceset="ATMEGA328P_PDIP" device="" value="ATMEGA328P"/>
-<part name="16MHZ" library="xose" deviceset="XTAL/S" device="" value="16MHz"/>
+<part name="IC1" library="xose" deviceset="ATMEGA328P_PDIP" device="" value="ATMEGA328P"/>
+<part name="XTAL1" library="xose" deviceset="XTAL/S" device="" value="16MHz"/>
 <part name="C2" library="xose" deviceset="C-EU" device="050-025X075" value="100nF"/>
 <part name="C4" library="xose" deviceset="C-EU" device="050-025X075" value="22pF"/>
 <part name="C5" library="xose" deviceset="C-EU" device="050-025X075" value="22pF"/>
@@ -5328,11 +5333,11 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C3" library="xose" deviceset="C-EU" device="050-025X075" value="100nF"/>
-<part name="REGULATOR" library="xose" deviceset="LP2950" device="Z" value="TSC295033"/>
+<part name="LDO1" library="xose" deviceset="LP2950" device="Z" value="TSC295033"/>
 <part name="C1" library="xose" deviceset="C-EU" device="050-025X075" value="330nF"/>
 <part name="BATT" library="xose" deviceset="CR2032" device="SMT"/>
-<part name="IC1" library="xose" deviceset="DS1307" device=""/>
-<part name="CRYSTAL" library="xose" deviceset="CRYSTAL_TC38H" device="" value="32768Hz"/>
+<part name="IC2" library="xose" deviceset="DS1307" device=""/>
+<part name="XTAL2" library="xose" deviceset="CRYSTAL_TC38H" device="" value="32768Hz"/>
 <part name="R1" library="xose" deviceset="RESISTOR" device="" value="1K"/>
 <part name="R3" library="xose" deviceset="RESISTOR" device="" value="1K"/>
 <part name="R5" library="xose" deviceset="RESISTOR" device="" value="1K"/>
@@ -5355,7 +5360,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="FTDI_DEVICE" device=""/>
 <part name="R9" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
-<part name="U$2" library="xose" deviceset="MICROSD-HRS_DM3D" device="" value="MicroSD"/>
+<part name="U$2" library="xose" deviceset="MICROSD-HRS_DM3D" device="" value="uSD"/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5367,8 +5372,8 @@ Mating wall wart : TOL-00298 (and others)</description>
 <plain>
 </plain>
 <instances>
-<instance part="MUC" gate="G$1" x="17.78" y="35.56"/>
-<instance part="16MHZ" gate="G$1" x="-12.7" y="33.02" rot="R90"/>
+<instance part="IC1" gate="G$1" x="17.78" y="35.56"/>
+<instance part="XTAL1" gate="G$1" x="-12.7" y="33.02" rot="R90"/>
 <instance part="C2" gate="G$1" x="-25.4" y="10.16"/>
 <instance part="C4" gate="G$1" x="-22.86" y="38.1" rot="MR90"/>
 <instance part="C5" gate="G$1" x="-22.86" y="27.94" rot="MR90"/>
@@ -5378,11 +5383,11 @@ Mating wall wart : TOL-00298 (and others)</description>
 <instance part="GND4" gate="1" x="-25.4" y="0"/>
 <instance part="GND6" gate="1" x="-33.02" y="22.86"/>
 <instance part="C3" gate="G$1" x="-27.94" y="60.96" rot="MR90"/>
-<instance part="REGULATOR" gate="G$1" x="33.02" y="93.98"/>
+<instance part="LDO1" gate="G$1" x="33.02" y="93.98"/>
 <instance part="C1" gate="G$1" x="53.34" y="93.98"/>
 <instance part="BATT" gate="G$1" x="119.38" y="38.1" rot="MR0"/>
-<instance part="IC1" gate="G$1" x="96.52" y="43.18"/>
-<instance part="CRYSTAL" gate="G$1" x="93.98" y="66.04" rot="R180"/>
+<instance part="IC2" gate="G$1" x="96.52" y="43.18"/>
+<instance part="XTAL2" gate="G$1" x="93.98" y="66.04" rot="R180"/>
 <instance part="R1" gate="G$1" x="187.96" y="99.06" rot="R90"/>
 <instance part="R3" gate="G$1" x="215.9" y="99.06" rot="R90"/>
 <instance part="R5" gate="G$1" x="205.74" y="99.06" rot="R90"/>
@@ -5417,7 +5422,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <nets>
 <net name="TXD" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD1(TXD)"/>
+<pinref part="IC1" gate="G$1" pin="PD1(TXD)"/>
 <wire x1="43.18" y1="35.56" x2="48.26" y2="35.56" width="0.1524" layer="91"/>
 <label x="48.26" y="35.56" size="1.778" layer="95"/>
 </segment>
@@ -5429,7 +5434,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="RXD" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD0(RXD)"/>
+<pinref part="IC1" gate="G$1" pin="PD0(RXD)"/>
 <wire x1="43.18" y1="38.1" x2="48.26" y2="38.1" width="0.1524" layer="91"/>
 <label x="48.26" y="38.1" size="1.778" layer="95"/>
 </segment>
@@ -5462,8 +5467,8 @@ Mating wall wart : TOL-00298 (and others)</description>
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="MUC" gate="G$1" pin="GND@2"/>
-<pinref part="MUC" gate="G$1" pin="GND@1"/>
+<pinref part="IC1" gate="G$1" pin="GND@2"/>
+<pinref part="IC1" gate="G$1" pin="GND@1"/>
 <wire x1="-5.08" y1="5.08" x2="-5.08" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="7.62" x2="-12.7" y2="7.62" width="0.1524" layer="91"/>
 <junction x="-5.08" y="7.62"/>
@@ -5494,13 +5499,13 @@ Mating wall wart : TOL-00298 (and others)</description>
 <pinref part="BATT" gate="G$1" pin="-"/>
 <wire x1="124.46" y1="38.1" x2="124.46" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="GND5" gate="1" pin="GND"/>
-<pinref part="IC1" gate="G$1" pin="GND"/>
+<pinref part="IC2" gate="G$1" pin="GND"/>
 <wire x1="124.46" y1="27.94" x2="124.46" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="27.94" x2="124.46" y2="27.94" width="0.1524" layer="91"/>
 <junction x="124.46" y="27.94"/>
 </segment>
 <segment>
-<pinref part="REGULATOR" gate="G$1" pin="GND"/>
+<pinref part="LDO1" gate="G$1" pin="GND"/>
 <wire x1="33.02" y1="88.9" x2="33.02" y2="86.36" width="0.2032" layer="91"/>
 <pinref part="C1" gate="G$1" pin="2"/>
 <wire x1="53.34" y1="88.9" x2="53.34" y2="86.36" width="0.2032" layer="91"/>
@@ -5586,8 +5591,8 @@ Mating wall wart : TOL-00298 (and others)</description>
 <label x="-25.4" y="17.78" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="MUC" gate="G$1" pin="AVCC"/>
-<pinref part="MUC" gate="G$1" pin="VCC"/>
+<pinref part="IC1" gate="G$1" pin="AVCC"/>
+<pinref part="IC1" gate="G$1" pin="VCC"/>
 <wire x1="-5.08" y1="55.88" x2="-5.08" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="-5.08" y1="53.34" x2="-12.7" y2="53.34" width="0.1524" layer="91"/>
 <junction x="-5.08" y="53.34"/>
@@ -5599,7 +5604,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <junction x="-20.32" y="50.8"/>
 </segment>
 <segment>
-<pinref part="REGULATOR" gate="G$1" pin="IN"/>
+<pinref part="LDO1" gate="G$1" pin="IN"/>
 <wire x1="22.86" y1="99.06" x2="17.78" y2="99.06" width="0.2032" layer="91"/>
 <label x="17.78" y="99.06" size="1.778" layer="95"/>
 </segment>
@@ -5614,7 +5619,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <label x="109.22" y="99.06" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VCC"/>
+<pinref part="IC2" gate="G$1" pin="VCC"/>
 <wire x1="104.14" y1="60.96" x2="104.14" y2="66.04" width="0.1524" layer="91"/>
 <label x="104.14" y="66.04" size="1.778" layer="95"/>
 <junction x="104.14" y="60.96"/>
@@ -5643,7 +5648,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PC6(/RESET)"/>
+<pinref part="IC1" gate="G$1" pin="PC6(/RESET)"/>
 <wire x1="-5.08" y1="60.96" x2="-20.32" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
 <pinref part="R9" gate="G$1" pin="1"/>
@@ -5653,10 +5658,10 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB6(XTAL1/TOSC1)"/>
+<pinref part="IC1" gate="G$1" pin="PB6(XTAL1/TOSC1)"/>
 <wire x1="-5.08" y1="35.56" x2="-7.62" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-7.62" y1="35.56" x2="-7.62" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="16MHZ" gate="G$1" pin="2"/>
+<pinref part="XTAL1" gate="G$1" pin="2"/>
 <wire x1="-7.62" y1="38.1" x2="-12.7" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="-12.7" y1="38.1" x2="-20.32" y2="38.1" width="0.1524" layer="91"/>
@@ -5665,10 +5670,10 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB7(XTAL2/TOSC2)"/>
+<pinref part="IC1" gate="G$1" pin="PB7(XTAL2/TOSC2)"/>
 <wire x1="-5.08" y1="30.48" x2="-7.62" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="-7.62" y1="30.48" x2="-7.62" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="16MHZ" gate="G$1" pin="1"/>
+<pinref part="XTAL1" gate="G$1" pin="1"/>
 <wire x1="-7.62" y1="27.94" x2="-12.7" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="-12.7" y1="27.94" x2="-20.32" y2="27.94" width="0.1524" layer="91"/>
@@ -5677,7 +5682,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="3V3" class="0">
 <segment>
-<pinref part="REGULATOR" gate="G$1" pin="O"/>
+<pinref part="LDO1" gate="G$1" pin="O"/>
 <wire x1="43.18" y1="99.06" x2="53.34" y2="99.06" width="0.2032" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
 <wire x1="53.34" y1="99.06" x2="58.42" y2="99.06" width="0.2032" layer="91"/>
@@ -5698,19 +5703,19 @@ Mating wall wart : TOL-00298 (and others)</description>
 <label x="109.22" y="96.52" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD4(XCK/T0)"/>
+<pinref part="IC1" gate="G$1" pin="PD4(XCK/T0)"/>
 <wire x1="43.18" y1="27.94" x2="48.26" y2="27.94" width="0.1524" layer="91"/>
 <label x="48.26" y="27.94" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SDA" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PC4(ADC4/SDA)"/>
+<pinref part="IC1" gate="G$1" pin="PC4(ADC4/SDA)"/>
 <wire x1="43.18" y1="50.8" x2="48.26" y2="50.8" width="0.1524" layer="91"/>
 <label x="48.26" y="50.8" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="SDA"/>
+<pinref part="IC2" gate="G$1" pin="SDA"/>
 <wire x1="81.28" y1="40.64" x2="76.2" y2="40.64" width="0.1524" layer="91"/>
 <label x="68.58" y="40.64" size="1.778" layer="95"/>
 <pinref part="R8" gate="G$1" pin="1"/>
@@ -5720,12 +5725,12 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="SCL" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PC5(ADC5/SCL)"/>
+<pinref part="IC1" gate="G$1" pin="PC5(ADC5/SCL)"/>
 <wire x1="43.18" y1="48.26" x2="48.26" y2="48.26" width="0.1524" layer="91"/>
 <label x="48.26" y="48.26" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="SCL"/>
+<pinref part="IC2" gate="G$1" pin="SCL"/>
 <wire x1="81.28" y1="45.72" x2="68.58" y2="45.72" width="0.1524" layer="91"/>
 <label x="68.58" y="45.72" size="1.778" layer="95"/>
 <pinref part="R7" gate="G$1" pin="1"/>
@@ -5734,7 +5739,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="SCK" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB5(SCK)"/>
+<pinref part="IC1" gate="G$1" pin="PB5(SCK)"/>
 <wire x1="43.18" y1="2.54" x2="48.26" y2="2.54" width="0.1524" layer="91"/>
 <label x="48.26" y="2.54" size="1.778" layer="95"/>
 </segment>
@@ -5746,7 +5751,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="MISO" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB4(MISO)"/>
+<pinref part="IC1" gate="G$1" pin="PB4(MISO)"/>
 <wire x1="43.18" y1="5.08" x2="48.26" y2="5.08" width="0.1524" layer="91"/>
 <label x="48.26" y="5.08" size="1.778" layer="95"/>
 </segment>
@@ -5758,7 +5763,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="MOSI" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB3(MOSI/OC2)"/>
+<pinref part="IC1" gate="G$1" pin="PB3(MOSI/OC2)"/>
 <wire x1="43.18" y1="7.62" x2="48.26" y2="7.62" width="0.1524" layer="91"/>
 <label x="48.26" y="7.62" size="1.778" layer="95"/>
 </segment>
@@ -5770,7 +5775,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="SS" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB2(SS/OC1B)"/>
+<pinref part="IC1" gate="G$1" pin="PB2(SS/OC1B)"/>
 <wire x1="43.18" y1="10.16" x2="48.26" y2="10.16" width="0.1524" layer="91"/>
 <label x="48.26" y="10.16" size="1.778" layer="95"/>
 </segment>
@@ -5782,7 +5787,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="BUTTON1" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD5(T1)"/>
+<pinref part="IC1" gate="G$1" pin="PD5(T1)"/>
 <wire x1="43.18" y1="25.4" x2="48.26" y2="25.4" width="0.1524" layer="91"/>
 <label x="48.26" y="25.4" size="1.778" layer="95"/>
 </segment>
@@ -5794,7 +5799,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="BUTTON2" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD6(AIN0)"/>
+<pinref part="IC1" gate="G$1" pin="PD6(AIN0)"/>
 <wire x1="43.18" y1="22.86" x2="48.26" y2="22.86" width="0.1524" layer="91"/>
 <label x="48.26" y="22.86" size="1.778" layer="95"/>
 </segment>
@@ -5806,7 +5811,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="BUTTON3" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PD7(AIN1)"/>
+<pinref part="IC1" gate="G$1" pin="PD7(AIN1)"/>
 <wire x1="43.18" y1="20.32" x2="48.26" y2="20.32" width="0.1524" layer="91"/>
 <label x="48.26" y="20.32" size="1.778" layer="95"/>
 </segment>
@@ -5818,7 +5823,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="BUTTON4" class="0">
 <segment>
-<pinref part="MUC" gate="G$1" pin="PB0(ICP)"/>
+<pinref part="IC1" gate="G$1" pin="PB0(ICP)"/>
 <wire x1="43.18" y1="15.24" x2="48.26" y2="15.24" width="0.1524" layer="91"/>
 <label x="48.26" y="15.24" size="1.778" layer="95"/>
 </segment>
@@ -5875,21 +5880,21 @@ Mating wall wart : TOL-00298 (and others)</description>
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="X1"/>
-<pinref part="CRYSTAL" gate="G$1" pin="2"/>
+<pinref part="IC2" gate="G$1" pin="X1"/>
+<pinref part="XTAL2" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="60.96" x2="91.44" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="X2"/>
-<pinref part="CRYSTAL" gate="G$1" pin="1"/>
+<pinref part="IC2" gate="G$1" pin="X2"/>
+<pinref part="XTAL2" gate="G$1" pin="1"/>
 <wire x1="96.52" y1="60.96" x2="96.52" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="VBAT"/>
+<pinref part="IC2" gate="G$1" pin="VBAT"/>
 <pinref part="BATT" gate="G$1" pin="+"/>
 <wire x1="111.76" y1="40.64" x2="114.3" y2="40.64" width="0.1524" layer="91"/>
 <junction x="114.3" y="40.64"/>
