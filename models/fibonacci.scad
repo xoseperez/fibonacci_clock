@@ -3,23 +3,25 @@
 // -----------------------------------------------------------
 
 hole_diam = 2;
-box_thick = 8;
+box_thick = 4;
 sep_thick = 4;
 sep_teeth_width = 10;
-led_diam=12; // 7 per els SMD
+tooth_correction = 0.1;
+led_diam=8; // 7 per els SMD
 box_step_size = 30;
-box_inner_depth=120;
 sep_depth = 60;
-gap=10;
+gap=6;
 mill_offset=0;
+box_inner_depth=120;
 
 // -----------------------------------------------------------
 
-box_inner_width = box_step_size * 8;
-box_inner_height = box_step_size * 5;
+box_inner_width = box_step_size * 8 + 1;
+box_inner_height = box_step_size * 5 + 1;
 box_outer_width = box_inner_width + 2 * box_thick;
 box_outer_height = box_inner_height + 2 * box_thick;
-box_teeth_width = box_inner_depth / 5;
+//box_inner_depth = box_outer_height;
+box_teeth_width = box_inner_depth / 9;
 teeth = box_inner_depth / box_teeth_width;
 
 // -----------------------------------------------------------
@@ -27,10 +29,22 @@ teeth = box_inner_depth / box_teeth_width;
 module base() {
     difference() {
         square([box_outer_width, box_inner_depth]);
-        for(i=[1:2:teeth]) {
-            translate([0,i*box_teeth_width,0])
+        for(y=[box_teeth_width:box_teeth_width*2:box_inner_depth-box_teeth_width]) {
+            translate([0,y,0])
                 square([box_thick,box_teeth_width]);
-            translate([box_inner_width+box_thick,i*box_teeth_width,0])
+            translate([box_inner_width+box_thick,y,0])
+                square([box_thick,box_teeth_width]);
+        }
+    }
+}
+
+module side() {
+    union() {
+        square([box_inner_height, box_inner_depth]);
+        for(y=[box_teeth_width:box_teeth_width*2:box_inner_depth-box_teeth_width]) {
+            translate([-box_thick,y,0])
+                square([box_thick,box_teeth_width]);
+            translate([box_inner_height,y,0])
                 square([box_thick,box_teeth_width]);
         }
     }
@@ -60,28 +74,48 @@ module face_with_holes() {
     }
 }
 
-module side() {
+module back_face() {
     difference() {
-        square([box_outer_height, box_inner_depth]);
-        for(i=[0:2:teeth]) {
-            translate([0,i*box_teeth_width,0])
-                square([box_thick,box_teeth_width]);
-            translate([box_inner_height+box_thick,i*box_teeth_width,0])
-                square([box_thick,box_teeth_width]);
+        face_with_holes();
+        translate([(box_inner_width-80)/2-4,(box_inner_height-51)/2+4,0])
+            //rotate(90)
+                pcbfootprint();
+        translate([36,20,0]) {
+            circle(12.5/2, center=true);
         }
     }
 }
 
-module outside_box() {
-    local_gap = gap + mill_offset;
-    offset(delta=mill_offset) {
-        base();
-        translate([0,box_inner_depth+local_gap,0]) base();
-        translate([box_outer_width+local_gap,0,0]) side();
-        translate([box_outer_width+local_gap,box_inner_depth+local_gap,0]) side();
-    }
-}
+module pcbfootprint(hole=6) {
 
+    // HOLES
+    hole = hole / 2;
+    translate([4,4,0]) {
+        circle(hole, center=true);
+    }
+    translate([84,4,0]) {
+        circle(hole, center=true);
+    }
+    translate([4,55,0]) {
+        circle(hole, center=true);
+    }
+    translate([84,55,0]) {
+        circle(hole, center=true);
+    }
+    // BUTTONS
+    translate([23,44,0]) {
+        square([55,13]);
+    }
+
+}
+    
+ 
+module outside_box() {
+    translate([0,0]) base();
+    translate([0,box_inner_depth + gap]) base();
+    translate([0, 2*(box_inner_depth+gap)]) side();
+    translate([box_inner_height + 2*gap, 2*(box_inner_depth+gap)]) side();
+}
 
 module inside_box_base() {
 
@@ -167,7 +201,16 @@ module inside_box_wall1() {
 }
 
 module inside_box_wall2() {
-    mirror([0,1,0]) inside_box_wall1();
+    mirror([0,1,0]) {
+        difference() {
+            inside_box_wall1();
+            // DENTS INTERIORS
+            for(i=[1:2:5])
+                translate([2*box_step_size,i*box_step_size/2,0])
+                    square([sep_thick, sep_teeth_width], center=true);
+        }
+    }
+    
 }
 
 module inside_box_wall3() {
@@ -293,19 +336,19 @@ module sep_1() {
 
 module separators() {
     sep_5();
-    translate([sep_depth+gap,0]) sep_3();
-    translate([sep_depth+gap,sep_depth+gap,0]) sep_2();
-    translate([2*sep_depth+2*gap,sep_depth+gap,0]) sep_1();
+    translate([sep_depth+0.5*gap,gap]) sep_3();
+    translate([sep_depth+0.5*gap,sep_depth+2*gap]) sep_2();
+    translate([2*sep_depth+1.7*gap,sep_depth+2*gap]) sep_1();
 }
 
 module inside_box() {
     inside_box_base();
-    translate([0, box_inner_height + gap]) face_with_holes();
-    translate([box_inner_width + gap, box_inner_height + gap]) inside_box_wall1();
-    translate([box_inner_width + gap, box_inner_height + 2 * sep_depth + 2*gap]) inside_box_wall2();
-    translate([box_inner_width + gap, 0]) inside_box_wall3();
-    translate([box_inner_width + 2*sep_depth + 1.5*gap, 0]) inside_box_wall4();
-    translate([box_inner_width + 2*sep_depth + 3*gap, 0]) separators();
+    translate([box_inner_width + gap, 0]) back_face();
+    translate([0, box_inner_height + gap]) inside_box_wall1();
+    translate([0, box_inner_height + 2 * sep_depth + 2*gap]) inside_box_wall2();
+    translate([2*box_inner_width + 2*gap, 0]) inside_box_wall3();
+    translate([2*box_inner_width + 2*sep_depth + 2.5*gap, 0]) inside_box_wall4();
+    translate([2*box_inner_width + 2*sep_depth + 4*gap, 0]) separators();
 }
 
 //Caixa exterior (43x25, fusta 8mm)
