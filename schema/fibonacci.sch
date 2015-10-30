@@ -2068,9 +2068,9 @@ grid 5 mm, outline 2.5 x 7.5 mm</description>
 <wire x1="2.254" y1="-0.254" x2="2.655" y2="-0.254" width="0.1524" layer="21"/>
 <wire x1="0.286" y1="-0.254" x2="2.254" y2="-0.254" width="0.1524" layer="51"/>
 <wire x1="-0.7864" y1="2.5484" x2="0.7864" y2="2.5484" width="0.1524" layer="51" curve="-34.298964"/>
-<pad name="1" x="-1.27" y="0" drill="0.8128" shape="octagon"/>
-<pad name="2" x="0" y="1.905" drill="0.8128" shape="octagon"/>
-<pad name="3" x="1.27" y="0" drill="0.8128" shape="octagon"/>
+<pad name="OUT" x="-1.27" y="0" drill="0.8128" shape="octagon"/>
+<pad name="GND" x="0" y="1.905" drill="0.8128" shape="octagon"/>
+<pad name="IN" x="1.27" y="0" drill="0.8128" shape="octagon"/>
 <text x="0" y="-2.032" size="0.8128" layer="27" font="vector" ratio="15" align="top-center">&gt;VALUE</text>
 <text x="0" y="3.048" size="0.8128" layer="27" font="vector" ratio="15" align="bottom-center">&gt;NAME</text>
 </package>
@@ -5114,9 +5114,9 @@ Source: http://www.national.com/ds/LP/LP2950.pdf</description>
 <devices>
 <device name="Z" package="TO92">
 <connects>
-<connect gate="G$1" pin="GND" pad="2"/>
-<connect gate="G$1" pin="IN" pad="1"/>
-<connect gate="G$1" pin="O" pad="3"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="IN" pad="IN"/>
+<connect gate="G$1" pin="O" pad="OUT"/>
 </connects>
 <technologies>
 <technology name="">
