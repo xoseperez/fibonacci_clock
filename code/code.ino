@@ -305,7 +305,7 @@ void update(bool force = false) {
 
 // Shifts time forward 
 // the specified number of hours and minutes
-void shiftTime(byte hours, byte minutes) {
+void shiftTime(int hours, int minutes) {
   int shift = (hours * 60 + minutes) * 60;
   RTC.set(RTC.get() + shift);
   adjustTime(shift);
@@ -368,7 +368,7 @@ void buttonCallback(uint8_t pin, uint8_t event) {
             
             case BEHAVIOUR_CHANGE_MINUTE:
               if (mode == MODE_CLOCK) {
-                shiftTime(minute() == 59 ? -1 : 0, 1);
+                shiftTime(0, minute() == 59 ? -59 : 1);
               }
               break;
             
