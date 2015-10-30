@@ -45,11 +45,17 @@
 #define MODE_CLOCK 1
 #define MODE_LAMP 2
 
+// behaviours
+#define BEHAVIOUR_NORMAL 0
+#define BEHAVIOUR_CHANGE_HOUR 1
+#define BEHAVIOUR_CHANGE_MINUTE 2
+#define BEHAVIOUR_PAUSE 3
+
 // pin definitions
 #define PIN_BUTTON_MODE 5
-#define PIN_BUTTON_FUNCTION 6
-#define PIN_BUTTON_HOUR 7
-#define PIN_BUTTON_MINUTE 8
+#define PIN_BUTTON_HOUR 6
+#define PIN_BUTTON_MINUTE 7
+#define PIN_BUTTON_ACTION 8
 #define PIN_LEDSTRIP 4
 
 // ===========================================
@@ -57,6 +63,7 @@
 // ===========================================
 
 byte mode = MODE_CLOCK;
+byte behaviour = BEHAVIOUR_NORMAL;
 byte palette = 0;
 
 // Pixel strip
@@ -67,7 +74,7 @@ void buttonCallback(uint8_t pin, uint8_t event);
 DebounceEvent buttonHour = DebounceEvent(PIN_BUTTON_HOUR, buttonCallback);
 DebounceEvent buttonMinute = DebounceEvent(PIN_BUTTON_MINUTE, buttonCallback);
 DebounceEvent buttonMode = DebounceEvent(PIN_BUTTON_MODE, buttonCallback);
-DebounceEvent buttonFunction = DebounceEvent(PIN_BUTTON_FUNCTION, buttonCallback);
+DebounceEvent buttonFunction = DebounceEvent(PIN_BUTTON_ACTION, buttonCallback);
 
 // blocks are: 
 // number : 1, 2, 3, 4,  5
@@ -75,16 +82,16 @@ DebounceEvent buttonFunction = DebounceEvent(PIN_BUTTON_FUNCTION, buttonCallback
 // value  : 1, 1, 2, 3,  5
 byte code_00[] = {0};
 byte code_01[] = {1, 2};
-byte code_02[] = {3, 4};
-byte code_03[] = {5, 6, 8};
+byte code_02[] = {4, 3};
+byte code_03[] = {8, 5, 6};
 byte code_04[] = {7, 9, 10};
-byte code_05[] = {11, 12, 16};
-byte code_06[] = {13, 14, 17, 18};
-byte code_07[] = {15, 19, 20};
-byte code_08[] = {21, 22, 24};
+byte code_05[] = {16, 11, 12};
+byte code_06[] = {18, 13, 14, 17};
+byte code_07[] = {20, 15, 19};
+byte code_08[] = {24, 21, 22};
 byte code_09[] = {23, 25, 26};
-byte code_10[] = {27, 28};
-byte code_11[] = {29, 30};
+byte code_10[] = {28, 27};
+byte code_11[] = {30, 29};
 byte code_12[] = {31};
 byte* codes[13] = {
   code_00, code_01, code_02, code_03, 
@@ -119,6 +126,11 @@ uint32_t colors[TOTAL_PALETTES][4] = {
 // Methods
 // ===========================================
 
+void reset() {
+  setTime(DEFAULT_DATETIME);
+  RTC.set(DEFAULT_DATETIME);
+}
+
 void digitalClockDisplay(){
   int current_hour = hour();
   int current_minute = minute();
@@ -136,7 +148,7 @@ byte getRandomCode(int value) {
     Serial.print("# of options: ");
     Serial.println(options[value]);
   #endif
-  byte chosen = random(options[value]);
+  byte chosen = (behaviour == BEHAVIOUR_NORMAL) ? random(options[value]) : 0;
   #ifdef DEBUG
     Serial.print("Chosen option: ");
     Serial.println(chosen);
@@ -167,8 +179,9 @@ void updateClock(bool force = false) {
   // RTC sync not working
   if (timeStatus() != timeSet) {
     #ifdef DEBUG
-      Serial.println("Wrong timeStatus, configure DS1307");
+      Serial.println("Wrong timeStatus, configuring DS1307");
     #endif
+    reset();
     return;
   }
 
@@ -190,21 +203,25 @@ void updateClock(bool force = false) {
   byte strip[9] = {0};
   
   // Load hours into strip array
-  current_hour = current_hour > 12 ? current_hour-12 : current_hour;
-  #ifdef DEBUG
-    Serial.print("Hour: ");
-    Serial.println(current_hour);
-  #endif
-  loadCode(getRandomCode(current_hour), strip, 1);
+  if (behaviour != BEHAVIOUR_CHANGE_MINUTE) {
+    current_hour = current_hour > 12 ? current_hour-12 : current_hour;
+    #ifdef DEBUG
+      Serial.print("Hour: ");
+      Serial.println(current_hour);
+    #endif
+    loadCode(getRandomCode(current_hour), strip, 1);
+  }
 
   // Load minutes into strip array
-  current_minute /= 5;
-  #ifdef DEBUG
-    Serial.print("Minutes/5: ");
-    Serial.println(current_minute);
-  #endif
-  loadCode(getRandomCode(current_minute), strip, 2);
-
+  if (behaviour != BEHAVIOUR_CHANGE_HOUR) {
+    current_minute /= 5;
+    #ifdef DEBUG
+      Serial.print("Minutes/5: ");
+      Serial.println(current_minute);
+    #endif
+    loadCode(getRandomCode(current_minute), strip, 2);
+  }
+  
   // Now we dump the strip array into the pixels
   #ifdef DEBUG
     Serial.print("Strip configuration: ");
@@ -270,7 +287,9 @@ void update(bool force = false) {
       updateClock(force);
       break;
     case MODE_LAMP:
-      updateMood(UPDATE_MOOD_INTERVAL);
+      if (behaviour != BEHAVIOUR_PAUSE) {
+        updateMood(UPDATE_MOOD_INTERVAL);
+      }
       break;
     default:
       if (mode != previous_mode) {
@@ -284,43 +303,111 @@ void update(bool force = false) {
 
 }
 
+// Shifts time forward 
+// the specified number of hours and minutes
 void shiftTime(byte hours, byte minutes) {
   int shift = (hours * 60 + minutes) * 60;
   RTC.set(RTC.get() + shift);
   adjustTime(shift);
 }
 
+// There are 4 buttons
+// My younger dau loves the click-click of the buttons,
+// so I want time changing to be somewhat difficult to
+// prevent her changing the time every now and then.
+// So, to change hours or minutes one has to press and hold
+// HOUR or MINUTE button and click ACTION button to change them.
+// If any of HOUR or MINUTE button is pressed, clock
+// will only show hours or minutes, not both.
+// Releasing those buttons or pressing the MODE button
+// switches behaviour back to BEHAVIOUR_NORMAL
+// In BEHAVIOUR_NORMAL behaviour ACTION button changes palettes
+
+// MODE button changes mode: clock -> lamp -> off -> clock
+// HOUR button sets hour for modification
+// MINUTE button sets minutes for modification
+// ACTION button changes hour/minutes/palette depending on HOUR and MINUTE buttons
+// ACTION button pauses/resumes rainbow cycle when in MODE_MOOD
+
 void buttonCallback(uint8_t pin, uint8_t event) {
+  
   if (event == EVENT_PRESSED) {
+    
     switch (pin) {
-        case PIN_BUTTON_MODE:
-          mode = (mode + 1) % TOTAL_MODES;
-          Serial.print("Mode: ");
-          Serial.println(mode);
-          break;
-        case PIN_BUTTON_HOUR:
-          if (mode == MODE_CLOCK) {
-            shiftTime(1, 0);
+
+      case PIN_BUTTON_MODE:
+        mode = (mode + 1) % TOTAL_MODES;
+        behaviour = BEHAVIOUR_NORMAL;
+        Serial.print("Mode: ");
+        Serial.println(mode);
+        break;
+
+      case PIN_BUTTON_HOUR:
+        if (mode == MODE_CLOCK and behaviour == BEHAVIOUR_NORMAL) {
+          behaviour = BEHAVIOUR_CHANGE_HOUR;
+          Serial.println("Change hour");
+        }
+        break;
+
+      case PIN_BUTTON_MINUTE:
+        if (mode == MODE_CLOCK and behaviour == BEHAVIOUR_NORMAL) {
+          behaviour = BEHAVIOUR_CHANGE_MINUTE;
+          Serial.println("Change minute");
+        }
+        break;
+
+      case PIN_BUTTON_ACTION:
+        
+        if (mode == MODE_CLOCK) {
+          
+          switch (behaviour) {
+            
+            case BEHAVIOUR_CHANGE_HOUR:
+              shiftTime(1, 0);
+              break;
+            
+            case BEHAVIOUR_CHANGE_MINUTE:
+              if (mode == MODE_CLOCK) {
+                shiftTime(minute() == 59 ? -1 : 0, 1);
+              }
+              break;
+            
+            default:
+              palette = (palette + 1) % TOTAL_PALETTES;
+              Serial.print("Palette: ");
+              Serial.println(palette);
+              
+          }        
+        
+        }
+
+        if (mode == MODE_LAMP) {
+          if (behaviour == BEHAVIOUR_PAUSE) {
+            behaviour = BEHAVIOUR_NORMAL;
+            Serial.println("Resume rainbow cycle");
+          } else {
+            behaviour = BEHAVIOUR_PAUSE;
+            Serial.println("Pause rainbow cycle");
           }
-          break;
-        case PIN_BUTTON_MINUTE:
-          if (mode == MODE_CLOCK) {
-            shiftTime(minute() == 59 ? -1 : 0, 1);
-          }
-          break;
-        case PIN_BUTTON_FUNCTION:
-          palette = (palette + 1) % TOTAL_PALETTES;
-          Serial.print("Palette: ");
-          Serial.println(palette);
-          break;
-        default:
-          // do nothing
-          break;
+          
+        }
+
+
     }
 
     update(true);
 
   }
+
+  if (event == EVENT_RELEASED) {
+    if (pin != PIN_BUTTON_ACTION) {
+      if (behaviour != BEHAVIOUR_NORMAL and mode == MODE_CLOCK ) {
+        behaviour = BEHAVIOUR_NORMAL;
+        update(true);
+      }
+    }
+  }
+
 }
 
 void setup() {
@@ -332,10 +419,7 @@ void setup() {
 
   // Config RTC provider
   setSyncProvider(RTC.get); 
-  if (timeStatus() != timeSet) {
-    setTime(DEFAULT_DATETIME);
-    RTC.set(DEFAULT_DATETIME);
-  }
+  if (timeStatus() != timeSet) reset();
 
   // Start display and initialize all to OFF
   pixels.begin();
