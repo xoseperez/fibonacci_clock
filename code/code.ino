@@ -29,7 +29,7 @@
 // Configuration
 // ===========================================
 
-//#define DEBUG
+#define DEBUG
 #define SERIAL_BAUD 9600
 #define DEBOUNCE_DELAY 100
 #define DEFAULT_DATETIME 1434121829
@@ -37,7 +37,7 @@
 #define UPDATE_MOOD_INTERVAL 100
 #define TOTAL_BLOCKS 5
 #define TOTAL_PIXELS 9
-#define TOTAL_PALETTES 10
+#define TOTAL_PALETTES 12
 #define TOTAL_MODES 3
 
 // modes
@@ -106,16 +106,18 @@ byte leds[] = {1, 1, 1, 2, 4};
 
 // Color palettes, for each palette: OFF, ONLY HOUR, ONLY MINUTE, BOTH HOUR AND MINUTE
 uint32_t colors[TOTAL_PALETTES][4] = {
-  { pixels.Color(255,255,255), pixels.Color(255,10,10),   pixels.Color(10,255,10),   pixels.Color(10,10,255)   }, // #0 RGB
-  { pixels.Color(255,255,255), pixels.Color(255,10,10),   pixels.Color(248,222,0),   pixels.Color(10,10,255)   }, // #1 Mondrian
-  { pixels.Color(255,255,255), pixels.Color(80,40,0),     pixels.Color(20,200,20),   pixels.Color(255,100,10)  }, // #2 Basbrun
-  { pixels.Color(255,255,255), pixels.Color(245,100,201), pixels.Color(114,247,54),  pixels.Color(113,235,219) }, // #3 80's
-  { pixels.Color(255,255,255), pixels.Color(255,123,123), pixels.Color(143,255,112), pixels.Color(120,120,255) }, // #4 Pastel
-  { pixels.Color(255,255,255), pixels.Color(212,49,45),   pixels.Color(145,210,49),  pixels.Color(141,95,224)  }, // #5 Modern
-  { pixels.Color(255,255,255), pixels.Color(209,62,200),  pixels.Color(69,232,224),  pixels.Color(80,70,202)   }, // #6 Cold
-  { pixels.Color(255,255,255), pixels.Color(237,20,20),   pixels.Color(246,243,54),  pixels.Color(255,126,21)  }, // #7 Warm
-  { pixels.Color(255,255,255), pixels.Color(70,35,0),     pixels.Color(70,122,10),   pixels.Color(200,182,0)   }, // #8 Earth
-  { pixels.Color(255,255,255), pixels.Color(211,34,34),   pixels.Color(80,151,78),   pixels.Color(16,24,149)   }  // #9 Dark
+  { pixels.Color(255,255,255), pixels.Color(255,10,10),   pixels.Color(10,255,10),   pixels.Color(10,10,255)   }, // #00 RGB
+  { pixels.Color(255,255,255), pixels.Color(255,10,10),   pixels.Color(248,222,0),   pixels.Color(10,10,255)   }, // #01 Mondrian
+  { pixels.Color(255,255,255), pixels.Color(80,40,0),     pixels.Color(20,200,20),   pixels.Color(255,100,10)  }, // #02 Basbrun
+  { pixels.Color(255,255,255), pixels.Color(245,100,201), pixels.Color(114,247,54),  pixels.Color(113,235,219) }, // #03 80's
+  { pixels.Color(255,255,255), pixels.Color(255,123,123), pixels.Color(143,255,112), pixels.Color(120,120,255) }, // #04 Pastel
+  { pixels.Color(255,255,255), pixels.Color(212,49,45),   pixels.Color(145,210,49),  pixels.Color(141,95,224)  }, // #05 Modern
+  { pixels.Color(255,255,255), pixels.Color(209,62,200),  pixels.Color(69,232,224),  pixels.Color(80,70,202)   }, // #06 Cold
+  { pixels.Color(255,255,255), pixels.Color(237,20,20),   pixels.Color(246,243,54),  pixels.Color(255,126,21)  }, // #07 Warm
+  { pixels.Color(255,255,255), pixels.Color(70,35,0),     pixels.Color(70,122,10),   pixels.Color(200,182,0)   }, // #08 Earth
+  { pixels.Color(255,255,255), pixels.Color(211,34,34),   pixels.Color(80,151,78),   pixels.Color(16,24,149)   }, // #09 Dark
+  { pixels.Color(0,0,0),       pixels.Color(255,10,10),   pixels.Color(10,255,10),   pixels.Color(10,10,255)   }, // #10 Black RGB
+  { pixels.Color(0,0,0),       pixels.Color(255,10,10),   pixels.Color(248,222,0),   pixels.Color(10,10,255)   }  // #11 Black Mondrian
 }; 
 
 // ===========================================
@@ -181,7 +183,8 @@ void updateClock(bool force = false) {
     #ifdef DEBUG
       Serial.println("Wrong timeStatus, configuring DS1307");
     #endif
-    reset();
+    //reset();
+    delay(1000);
     return;
   }
 
@@ -306,7 +309,7 @@ void update(bool force = false) {
 // Shifts time forward 
 // the specified number of hours and minutes
 void shiftTime(int hours, int minutes) {
-  int shift = (hours * 60 + minutes) * 60;
+  long shift = (hours * 60 + minutes) * 60;
   RTC.set(RTC.get() + shift);
   adjustTime(shift);
 }
@@ -400,11 +403,9 @@ void buttonCallback(uint8_t pin, uint8_t event) {
   }
 
   if (event == EVENT_RELEASED) {
-    if (pin != PIN_BUTTON_ACTION) {
-      if (behaviour != BEHAVIOUR_NORMAL and mode == MODE_CLOCK ) {
-        behaviour = BEHAVIOUR_NORMAL;
-        update(true);
-      }
+    if (pin != PIN_BUTTON_ACTION and behaviour != BEHAVIOUR_NORMAL and mode == MODE_CLOCK ) {
+      behaviour = BEHAVIOUR_NORMAL;
+      update(true);
     }
   }
 
