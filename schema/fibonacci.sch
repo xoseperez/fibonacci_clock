@@ -4189,12 +4189,12 @@ Yageo CFR series &lt;a href="http://www.yageo.com/pdf/yageo/Leaded-R_CFR_2008.pd
 <text x="5.08" y="27.94" size="1.27" layer="95" rot="R180">&gt;NAME</text>
 <text x="0" y="-20.32" size="1.27" layer="96">&gt;VALUE</text>
 <pin name="MOSI" x="17.78" y="7.62" length="middle" rot="R180"/>
-<pin name="CMD" x="17.78" y="10.16" length="middle" rot="R180"/>
+<pin name="NC2" x="17.78" y="10.16" length="middle" rot="R180"/>
 <pin name="3V3" x="17.78" y="12.7" length="middle" rot="R180"/>
 <pin name="VSS" x="17.78" y="17.78" length="middle" rot="R180"/>
 <pin name="SCK" x="17.78" y="15.24" length="middle" rot="R180"/>
 <pin name="MISO" x="17.78" y="20.32" length="middle" rot="R180"/>
-<pin name="NC" x="17.78" y="22.86" length="middle" rot="R180"/>
+<pin name="NC1" x="17.78" y="22.86" length="middle" rot="R180"/>
 <pin name="SS" x="17.78" y="5.08" length="middle" rot="R180"/>
 <pin name="GND1" x="17.78" y="0" length="middle" rot="R180"/>
 <pin name="GND2" x="17.78" y="-2.54" length="middle" rot="R180"/>
@@ -5250,7 +5250,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="RESISTOR">
+<deviceset name="RESISTOR-400MIL">
 <gates>
 <gate name="G$1" symbol="RESISTOR" x="38.1" y="-10.16"/>
 </gates>
@@ -5274,16 +5274,16 @@ Mating wall wart : TOL-00298 (and others)</description>
 <device name="" package="DM3D">
 <connects>
 <connect gate="G$1" pin="3V3" pad="VDD"/>
-<connect gate="G$1" pin="CMD" pad="CMD"/>
 <connect gate="G$1" pin="GND1" pad="GND1"/>
 <connect gate="G$1" pin="GND2" pad="GND2"/>
 <connect gate="G$1" pin="GND3" pad="GND3"/>
 <connect gate="G$1" pin="GND4" pad="GND4"/>
 <connect gate="G$1" pin="MISO" pad="DAT0"/>
-<connect gate="G$1" pin="MOSI" pad="CD/DAT3"/>
-<connect gate="G$1" pin="NC" pad="DAT1"/>
+<connect gate="G$1" pin="MOSI" pad="CMD"/>
+<connect gate="G$1" pin="NC1" pad="DAT1"/>
+<connect gate="G$1" pin="NC2" pad="DAT2"/>
 <connect gate="G$1" pin="SCK" pad="CLK"/>
-<connect gate="G$1" pin="SS" pad="DAT2"/>
+<connect gate="G$1" pin="SS" pad="CD/DAT3"/>
 <connect gate="G$1" pin="SW_A" pad="SW_A"/>
 <connect gate="G$1" pin="SW_B" pad="SW_B"/>
 <connect gate="G$1" pin="VSS" pad="VSS"/>
@@ -5338,14 +5338,14 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="BATT" library="xose" deviceset="CR2032" device="SMT"/>
 <part name="IC2" library="xose" deviceset="DS1307" device=""/>
 <part name="XTAL2" library="xose" deviceset="CRYSTAL_TC38H" device="" value="32768Hz"/>
-<part name="R1" library="xose" deviceset="RESISTOR" device="" value="1K"/>
-<part name="R3" library="xose" deviceset="RESISTOR" device="" value="1K"/>
-<part name="R5" library="xose" deviceset="RESISTOR" device="" value="1K"/>
-<part name="R2" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
-<part name="R4" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
-<part name="R6" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
-<part name="R7" library="xose" deviceset="RESISTOR" device="" value="10K"/>
-<part name="R8" library="xose" deviceset="RESISTOR" device="" value="10K"/>
+<part name="R1" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K"/>
+<part name="R3" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K"/>
+<part name="R5" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K"/>
+<part name="R2" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K8"/>
+<part name="R4" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K8"/>
+<part name="R6" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K8"/>
+<part name="R7" library="xose" deviceset="RESISTOR-400MIL" device="" value="10K"/>
+<part name="R8" library="xose" deviceset="RESISTOR-400MIL" device="" value="10K"/>
 <part name="BUTTON1" library="xose" deviceset="TACTILE_BUTTON" device="" value="B1"/>
 <part name="BUTTON2" library="xose" deviceset="TACTILE_BUTTON" device="" value="B2"/>
 <part name="BUTTON3" library="xose" deviceset="TACTILE_BUTTON" device="" value="B3"/>
@@ -5359,7 +5359,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="JP1" library="SparkFun-Connectors" deviceset="FTDI_DEVICE" device=""/>
-<part name="R9" library="xose" deviceset="RESISTOR" device="" value="1K8"/>
+<part name="R9" library="xose" deviceset="RESISTOR-400MIL" device="" value="1K8"/>
 <part name="U$2" library="xose" deviceset="MICROSD-HRS_DM3D" device="" value="uSD"/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5412,7 +5412,7 @@ Mating wall wart : TOL-00298 (and others)</description>
 <instance part="R9" gate="G$1" x="-20.32" y="55.88" rot="R270"/>
 <instance part="U$2" gate="G$1" x="127" y="86.36"/>
 <instance part="GND11" gate="1" x="157.48" y="76.2"/>
-<instance part="GND12" gate="1" x="170.18" y="86.36"/>
+<instance part="GND12" gate="1" x="172.72" y="99.06"/>
 <instance part="GND13" gate="1" x="109.22" y="91.44"/>
 <instance part="GND14" gate="1" x="86.36" y="83.82"/>
 <instance part="GND15" gate="1" x="162.56" y="-5.08"/>
@@ -5551,13 +5551,9 @@ Mating wall wart : TOL-00298 (and others)</description>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="VSS"/>
-<wire x1="144.78" y1="104.14" x2="170.18" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="170.18" y1="104.14" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="CMD"/>
-<wire x1="170.18" y1="96.52" x2="170.18" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="96.52" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="144.78" y1="104.14" x2="172.72" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="104.14" x2="172.72" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="GND12" gate="1" pin="GND"/>
-<junction x="170.18" y="96.52"/>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="GND4"/>
