@@ -2,3 +2,7 @@
 *.b#?
 .modgit
 firmware*
+.pioenvs
+.sconsign.dblite
+platformio.ini
+
