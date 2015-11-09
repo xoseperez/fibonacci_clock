@@ -4,5 +4,3 @@
 firmware*
 .pioenvs
 .sconsign.dblite
-platformio.ini
-
