@@ -29,7 +29,7 @@
 // Configuration
 // ===========================================
 
-#define DEBUG
+//#define DEBUG
 #define SERIAL_BAUD 9600
 #define DEBOUNCE_DELAY 100
 #define DEFAULT_DATETIME 1434121829
@@ -76,7 +76,7 @@ DebounceEvent buttonMinute = DebounceEvent(PIN_BUTTON_MINUTE, buttonCallback);
 DebounceEvent buttonMode = DebounceEvent(PIN_BUTTON_MODE, buttonCallback);
 DebounceEvent buttonFunction = DebounceEvent(PIN_BUTTON_ACTION, buttonCallback);
 
-// blocks are: 
+// blocks are:
 // number : 1, 2, 3, 4,  5
 // binary : 1, 2, 4, 8, 16
 // value  : 1, 1, 2, 3,  5
@@ -94,9 +94,9 @@ byte code_10[] = {28, 27};
 byte code_11[] = {30, 29};
 byte code_12[] = {31};
 byte* codes[13] = {
-  code_00, code_01, code_02, code_03, 
-  code_04, code_05, code_06, code_07, 
-  code_08, code_09, code_10, code_11, 
+  code_00, code_01, code_02, code_03,
+  code_04, code_05, code_06, code_07,
+  code_08, code_09, code_10, code_11,
   code_12
 };
 byte options[13] = {1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1};
@@ -118,7 +118,7 @@ uint32_t colors[TOTAL_PALETTES][4] = {
   { pixels.Color(255,255,255), pixels.Color(211,34,34),   pixels.Color(80,151,78),   pixels.Color(16,24,149)   }, // #09 Dark
   { pixels.Color(0,0,0),       pixels.Color(255,10,10),   pixels.Color(10,255,10),   pixels.Color(10,10,255)   }, // #10 Black RGB
   { pixels.Color(0,0,0),       pixels.Color(255,10,10),   pixels.Color(248,222,0),   pixels.Color(10,10,255)   }  // #11 Black Mondrian
-}; 
+};
 
 // ===========================================
 // Interrupt routines
@@ -133,15 +133,18 @@ void reset() {
   RTC.set(DEFAULT_DATETIME);
 }
 
+void printDigits(int digits, bool semicolon = false){
+  if (semicolon) Serial.print(":");
+  if(digits < 10) Serial.print('0');
+  Serial.print(digits);
+}
+
 void digitalClockDisplay(){
-  int current_hour = hour();
-  int current_minute = minute();
   Serial.print("Time: ");
-  Serial.print(current_hour);
-  Serial.print(":");
-  if(current_minute < 10) Serial.print('0');
-  Serial.print(current_minute);
-  Serial.println(); 
+  printDigits(hour(), false);
+  printDigits(minute(), true);
+  printDigits(second(), true);
+  Serial.println();
 }
 
 byte getRandomCode(int value) {
@@ -204,7 +207,7 @@ void updateClock(bool force = false) {
   // on whether each led should be blank (0),
   // lit for hours (1), minutes (2) or both (3).
   byte strip[9] = {0};
-  
+
   // Load hours into strip array
   if (behaviour != BEHAVIOUR_CHANGE_MINUTE) {
     current_hour = current_hour > 12 ? current_hour-12 : current_hour;
@@ -224,7 +227,7 @@ void updateClock(bool force = false) {
     #endif
     loadCode(getRandomCode(current_minute), strip, 2);
   }
-  
+
   // Now we dump the strip array into the pixels
   #ifdef DEBUG
     Serial.print("Strip configuration: ");
@@ -247,7 +250,7 @@ void updateClock(bool force = false) {
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
 uint32_t Wheel(byte WheelPos) {
-  
+
   if(WheelPos < 85) {
     return pixels.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
   } else if(WheelPos < 170) {
@@ -262,14 +265,14 @@ uint32_t Wheel(byte WheelPos) {
 
 // Slightly different, this makes the rainbow equally distributed throughout
 void updateMood(uint8_t wait) {
-  
+
   static unsigned long count = 0;
   byte led = 0;
   uint32_t color;
 
   for (byte i=0; i<sizeof(leds); i++) {
     color = Wheel(((i * 256 / sizeof(leds)) + count) & 255);
-    for(byte j=0; j<leds[i]; j++) {        
+    for(byte j=0; j<leds[i]; j++) {
       pixels.setPixelColor(led+j, color);
     }
     led += leds[i];
@@ -282,7 +285,7 @@ void updateMood(uint8_t wait) {
 }
 
 void update(bool force = false) {
- 
+
   static byte previous_mode = 0xFF;
 
   switch (mode) {
@@ -302,14 +305,21 @@ void update(bool force = false) {
       break;
   }
 
-  previous_mode = mode; 
+  previous_mode = mode;
 
 }
 
-// Shifts time forward 
+// Shifts time forward
 // the specified number of hours and minutes
 void shiftTime(int hours, int minutes) {
   long shift = (hours * 60 + minutes) * 60;
+  RTC.set(RTC.get() + shift);
+  adjustTime(shift);
+}
+
+// Sets seconds to 0 for current hour:minute
+void resetSeconds() {
+  long shift = -second();
   RTC.set(RTC.get() + shift);
   adjustTime(shift);
 }
@@ -333,9 +343,9 @@ void shiftTime(int hours, int minutes) {
 // ACTION button pauses/resumes rainbow cycle when in MODE_MOOD
 
 void buttonCallback(uint8_t pin, uint8_t event) {
-  
+
   if (event == EVENT_PRESSED) {
-    
+
     switch (pin) {
 
       case PIN_BUTTON_MODE:
@@ -360,28 +370,28 @@ void buttonCallback(uint8_t pin, uint8_t event) {
         break;
 
       case PIN_BUTTON_ACTION:
-        
+
         if (mode == MODE_CLOCK) {
-          
+
           switch (behaviour) {
-            
+
             case BEHAVIOUR_CHANGE_HOUR:
               shiftTime(1, 0);
               break;
-            
+
             case BEHAVIOUR_CHANGE_MINUTE:
               if (mode == MODE_CLOCK) {
                 shiftTime(0, minute() == 59 ? -59 : 1);
               }
               break;
-            
+
             default:
               palette = (palette + 1) % TOTAL_PALETTES;
               Serial.print("Palette: ");
               Serial.println(palette);
-              
-          }        
-        
+
+          }
+
         }
 
         if (mode == MODE_LAMP) {
@@ -392,7 +402,7 @@ void buttonCallback(uint8_t pin, uint8_t event) {
             behaviour = BEHAVIOUR_PAUSE;
             Serial.println("Pause rainbow cycle");
           }
-          
+
         }
 
 
@@ -405,6 +415,7 @@ void buttonCallback(uint8_t pin, uint8_t event) {
   if (event == EVENT_RELEASED) {
     if (pin != PIN_BUTTON_ACTION and behaviour != BEHAVIOUR_NORMAL and mode == MODE_CLOCK ) {
       behaviour = BEHAVIOUR_NORMAL;
+      resetSeconds();
       update(true);
     }
   }
@@ -419,7 +430,7 @@ void setup() {
   randomSeed(analogRead(0));
 
   // Config RTC provider
-  setSyncProvider(RTC.get); 
+  setSyncProvider(RTC.get);
   if (timeStatus() != timeSet) reset();
 
   // Start display and initialize all to OFF
