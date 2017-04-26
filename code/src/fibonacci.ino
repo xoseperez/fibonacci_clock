@@ -198,11 +198,6 @@ void loadCode(byte code, byte * strip, byte value) {
 
 void updateClock(bool force = false) {
 
-   // RTC sync not working
-   if (!rtc.isrunning()) {
-      resetTime();
-   }
-
    // Check previous values for hour and minute and
    // update only if they have changed
    DateTime now = rtc.now();

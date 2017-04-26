@@ -86,7 +86,7 @@ module back_face() {
     }
 }
 
-module pcbfootprint(hole=6) {
+module pcbfootprint(hole=4) {
 
     // HOLES
     hole = hole / 2;
@@ -352,10 +352,11 @@ module inside_box() {
 }
 
 //Caixa exterior (43x25, fusta 8mm)
-outside_box();
+//outside_box();
 
 // Caixa interior (57x31, fusta 4mm)
 //inside_box();
+back_face();
 
 // Tapa (24x15, acrílic neu 3/4mm)
 //face();
