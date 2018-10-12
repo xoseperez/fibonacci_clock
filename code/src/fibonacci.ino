@@ -28,9 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ===========================================
 
 //#define DEBUG
-#define SERIAL_BAUD 9600
+#define SERIAL_BAUD 115200
 #define DEBOUNCE_DELAY 100
-#define DEFAULT_DATETIME 1434121829
 #define UPDATE_CLOCK_INTERVAL 60000
 #define UPDATE_MOOD_INTERVAL 100
 #define TOTAL_BLOCKS 5
@@ -218,7 +217,7 @@ void updateClock(bool force = false) {
 
    // Load hours into strip array
    if (behaviour != BEHAVIOUR_CHANGE_MINUTE) {
-      current_hour = current_hour > 12 ? current_hour-12 : current_hour;
+      current_hour = current_hour > 12 ? current_hour - 12 : current_hour;
       #ifdef DEBUG
          Serial.print(F("Hour: "));
          Serial.println(current_hour);
